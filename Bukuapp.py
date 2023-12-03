@@ -14,7 +14,7 @@ st.header('DATABASE BUKU PERPUSTAKAAN')
 page = st.sidebar.selectbox("Pilih Menu", ["View Data","Edit Data"])
 
 if page == "View Data":
-    data = conn.query('SELECT * FROM buku ORDER By book_id;').set_index('book_id')
+    data = conn.query('SELECT * FROM buku ORDER By code;').set_index('code')
     st.dataframe(data)
 
 if page == "Edit Data":
@@ -25,7 +25,7 @@ if page == "Edit Data":
             session.execute(query, {'1':'', '2':'', '3':'', '4':'', '5':'', '6':'', '7':'', '8':'', '9':''})
             session.commit()
 
-    data = conn.query('SELECT * FROM buku ORDER By id;', ttl="0")
+    data = conn.query('SELECT * FROM buku ORDER By code;')
     for _, result in data.iterrows():        
         code_lama = result['Kode Buku']
         title_lama = result["Judul Buku"]
