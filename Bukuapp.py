@@ -41,31 +41,24 @@ if page == "Edit Data":
             with st.form(f'data-{id}'):
                 code_baru = st.text_input("Kode Buku", code_lama)
                 title_baru = st.text_input("Judul Buku", title_lama)
-                genre_number_baru = st.selectbox(
-				"Genre", 
-				list_genre, 
-				list_genre.index(genre_lama)
-				)
+                genre_number_baru = st.selectbox("Genre", list_genre, list_genre.index(genre_lama))
                 year_baru = st.text_input("Tahun Terbit", year_lama)
                 author_baru = st.text_input("Pengarang", author_lama)
                 publisher_baru = st.text_input("Penerbit", publisher_lama)
                 rack_baru = st.text_input("Rak Buku", rack_lama)
-		status_baru = st.selectbox("Status", list_status, list_status.index(status_lama))
-		pict_baru = st.file_uploader(
-		    	"Gambar Buku",
-	        	type=None,
-	           	accept_multiple_files=False,
-	            	key=None,
-	            	help=None,
-	            	on_change=None,
-	            	args=None,
-	            	kwargs=None,
-	            	*,
-	            	disabled=False,
-	            	label_visibility="visible"
-	        	)
-                
-                col1, col2 = st.columns([1, 6])
+                status_baru = st.selectbox("Status", list_status, list_status.index(status_lama))
+                pict_baru = st.file_uploader(
+                    "Gambar Buku",
+                    type=None,
+                    accept_multiple_files=False,
+                    key=None,
+                    help=None,
+                    on_change=None,
+                    args=None,
+                    kwargs=None,
+                    disabled=False,
+                    label_visibility="visible"
+                )
 
                 with col1:
                     if st.form_submit_button('UPDATE'):
