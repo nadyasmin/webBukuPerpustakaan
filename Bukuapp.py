@@ -46,20 +46,20 @@ if page == "Edit Data":
                 author_baru = st.text_input("Pengarang", author_lama)
                 publisher_baru = st.text_input("Penerbit", publisher_lama)
                 rack_baru = st.text_input("Rak Buku", rack_lama)
-                status_baru = st.selectbox("Status", list_status, list_status.index(status_lama))
+		status_baru = st.selectbox("Status", list_status, list_status.index(status_lama))
 		pict_baru = st.file_uploader(
-	            "Gambar Buku",
-	            type=None,
-	            accept_multiple_files=False,
-	            key=None,
-	            help=None,
-	            on_change=None,
-	            args=None,
-	            kwargs=None,
-	            *,
-	            disabled=False,
-	            label_visibility="visible"
-	        )
+		    	"Gambar Buku",
+	        	type=None,
+	           	accept_multiple_files=False,
+	            	key=None,
+	            	help=None,
+	            	on_change=None,
+	            	args=None,
+	            	kwargs=None,
+	            	*,
+	            	disabled=False,
+	            	label_visibility="visible"
+	        	)
                 
                 col1, col2 = st.columns([1, 6])
 
