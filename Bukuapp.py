@@ -50,11 +50,7 @@ if page == "Edit Data":
                 author_baru = st.text_input("Pengarang", author_lama)
                 publisher_baru = st.text_input("Penerbit", publisher_lama)
                 rack_baru = st.text_input("Rak Buku", rack_lama)
-		status_baru = st.selectbox(
-    			"Status", 
-    			list_status, 
-    			list_status.index(status_lama)
-		)
+		status_baru = st.selectbox("Status", list_status, list_status.index(status_lama))
 		pict_baru = st.file_uploader(
 		    	"Gambar Buku",
 	        	type=None,
