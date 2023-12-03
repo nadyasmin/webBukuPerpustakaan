@@ -42,19 +42,19 @@ if page == "Edit Data":
                 code_baru = st.text_input("Kode Buku", code_lama)
                 title_baru = st.text_input("Judul Buku", title_lama)
                 genre_number_baru = st.selectbox(
-			"Genre", 
-			list_genre, 
-			list_genre.index(genre_lama)
-			)
+				"Genre", 
+				list_genre, 
+				list_genre.index(genre_lama)
+				)
                 year_baru = st.text_input("Tahun Terbit", year_lama)
                 author_baru = st.text_input("Pengarang", author_lama)
                 publisher_baru = st.text_input("Penerbit", publisher_lama)
                 rack_baru = st.text_input("Rak Buku", rack_lama)
 		status_baru = st.selectbox(
-			"Status", 
-			list_status, 
-			list_status.index(status_lama)
-			)
+				"Status", 
+				list_status, 
+				list_status.index(status_lama)
+				)
 		pict_baru = st.file_uploader(
 		    	"Gambar Buku",
 	        	type=None,
