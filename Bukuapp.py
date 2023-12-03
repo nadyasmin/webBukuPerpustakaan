@@ -20,7 +20,7 @@ if page == "View Data":
 if page == "Edit Data":
     if st.button('Tambah Data'):
         with conn.session as session:
-            query = text('INSERT INTO buku (code, title, genre, year, author, publisher, rack, status, pict) \
+            query = text('INSERT INTO buku ("Kode Buku", "Judul Buku", "Genre", "Tahun Terbit", "Pengarang", "Penerbit", "Rak Buku", "Status", "Gambar Buku") \
                           VALUES (:1, :2, :3, :4, :5, :6, :7, :8, :9);')
             session.execute(query, {'1':'', '2':'', '3':'', '4':'', '5':'', '6':'', '7':'', '8':'', '9':''})
             session.commit()
