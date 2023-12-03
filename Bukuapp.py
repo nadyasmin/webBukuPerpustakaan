@@ -44,7 +44,8 @@ if page == "Edit Data":
                 genre_number_baru = st.selectbox(
 			"Genre", 
 			list_genre, 
-			list_genre.index(genre_lama))
+			list_genre.index(genre_lama)
+			)
                 year_baru = st.text_input("Tahun Terbit", year_lama)
                 author_baru = st.text_input("Pengarang", author_lama)
                 publisher_baru = st.text_input("Penerbit", publisher_lama)
@@ -52,7 +53,8 @@ if page == "Edit Data":
 		status_baru = st.selectbox(
 			"Status", 
 			list_status, 
-			list_status.index(status_lama))
+			list_status.index(status_lama)
+			)
 		pict_baru = st.file_uploader(
 		    	"Gambar Buku",
 	        	type=None,
