@@ -61,6 +61,8 @@ if page == "Edit Data":
                     label_visibility="visible"
                 )
 
+                col1, col2 = st.columns([1, 6])
+
                 with col1:
                     if st.form_submit_button('UPDATE'):
                         with conn.session as session:
