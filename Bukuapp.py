@@ -20,7 +20,7 @@ if page == "View Data":
 if page == "Edit Data":
     if st.button('Tambah Data'):
         with conn.session as session:
-            query = text('INSERT INTO buku ("Kode Buku", "Judul Buku", "Genre", "Tahun Terbit", "Pengarang", "Penerbit", "Rak Buku", "Status", "Gambar Buku") \
+            query = text('INSERT INTO buku ("Kode Buku", "Judul Buku", "Genre", "Tahun Terbit", "Pengarang", "Penerbit", "Kode Rak", "Status", "Gambar Buku") \
                           VALUES (:1, :2, :3, :4, :5, :6, :7, :8, :9);')
             session.execute(query, {'1':'', '2':'', '3':'', '4':'', '5':'', '6':'', '7':'', '8':'', '9':''})
             session.commit()
@@ -34,7 +34,7 @@ if page == "Edit Data":
         year_lama = result["Tahun Terbit"]
         author_lama = result["Pengarang"]
         publisher_lama = result["Penerbit"]
-        rack_lama = result["Rak Buku"]
+        rack_lama = result["Kode Rak"]
         status_lama = result["Status"]
         pict_lama = result["Gambar Buku"]
 
@@ -46,7 +46,7 @@ if page == "Edit Data":
                 year_baru = st.text_input("Tahun Terbit", year_lama)
                 author_baru = st.text_input("Pengarang", author_lama)
                 publisher_baru = st.text_input("Penerbit", publisher_lama)
-                rack_baru = st.text_input("Rak Buku", rack_lama)
+                rack_baru = st.text_input("Kode Rak", rack_lama)
                 status_baru = st.selectbox("Status", list_status, list_status.index(status_lama))
                 pict_baru = st.file_uploader(
                     "Gambar Buku",
