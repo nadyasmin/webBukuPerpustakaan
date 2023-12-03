@@ -7,14 +7,14 @@ list_genre = ['', 'Romantis', 'Anak-anak', 'Horor', 'Sci-Fi', 'Aksi', 'Misteri',
 conn = st.connection("postgresql", type="sql", 
                      url="postgresql://nadia.2043221105:P4YglWGXSp3e@ep-muddy-rice-61227326.us-east-2.aws.neon.tech/web")
 with conn.session as session:
-    query = text('CREATE TABLE IF NOT EXISTS buku (code VARCHAR, title VARCHAR(255), genre VARCHAR(255), year INTEGER, author VARCHAR(255), publisher VARCHAR(255), rack VARCHAR(5), status VARCHAR(255), pict OID);')
+    query = text('CREATE TABLE IF NOT EXISTS buku (id serial, code VARCHAR, title VARCHAR(255), genre VARCHAR(255), year INTEGER, author VARCHAR(255), publisher VARCHAR(255), rack VARCHAR(5), status VARCHAR(255), pict OID);')
     session.execute(query)
 
 st.header('DATABASE BUKU PERPUSTAKAAN')
 page = st.sidebar.selectbox("Pilih Menu", ["View Data","Edit Data"])
 
 if page == "View Data":
-    data = conn.query('SELECT * FROM buku ORDER By title;').set_index('title')
+    data = conn.query('SELECT * FROM buku ORDER By id;', ttl="0").set_index('id')
     st.dataframe(data)
 
 if page == "Edit Data":
@@ -26,7 +26,8 @@ if page == "Edit Data":
             session.commit()
 
     data = conn.query('SELECT * FROM buku ORDER By code;')
-    for _, result in data.iterrows():        
+    for _, result in data.iterrows():
+        id = result['id']
         code_lama = result['Kode Buku']
         title_lama = result["Judul Buku"]
         genre_lama = result["Genre"]
