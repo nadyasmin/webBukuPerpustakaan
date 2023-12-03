@@ -70,8 +70,8 @@ if page == "Edit Data":
                                           SET code=:1, title=:2, genre=:3, year=:4, \
                                           author=:5, publisher=:6, rack=:7, status=:8, pict=:9 \
                                           WHERE id=:10;')
-                            session.execute(query, {'1':code_baru, '2':title_baru, '3':genre_baru, '4':year_baru, 
-                                                    '5':author_baru, '6':publisher_baru, '7':rack_baru, '8':status_baru, '9':pict_baru, '10':id})
+                            session.execute(query, {'1':code_baru, '2':title_baru, '3':genre_baru, '4':year_baru, '5':author_baru, 
+                                                    '6':publisher_baru, '7':rack_baru, '8':status_baru, '9':pict_baru, '10':id})
                             session.commit()
                             st.experimental_rerun()
                 
