@@ -1,5 +1,5 @@
 CREATE TABLE buku (
-	id serial,
+    id serial,
     "Kode Buku" VARCHAR PRIMARY KEY,
     "Judul Buku" VARCHAR(255),
     "Genre" VARCHAR(255),
