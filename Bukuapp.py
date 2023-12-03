@@ -14,7 +14,7 @@ st.header('DATABASE BUKU PERPUSTAKAAN')
 page = st.sidebar.selectbox("Pilih Menu", ["View Data","Edit Data"])
 
 if page == "View Data":
-    data = conn.query('SELECT * FROM buku ORDER By title;', ttl="0").set_index('title')
+    data = conn.query('SELECT * FROM buku ORDER By title;').set_index('title')
     st.dataframe(data)
 
 if page == "Edit Data":
