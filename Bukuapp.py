@@ -54,7 +54,7 @@ if page == "Edit Data":
     			"Status", 
     			list_status, 
     			list_status.index(status_lama)
-		)
+			)
 		pict_baru = st.file_uploader(
 		    	"Gambar Buku",
 	        	type=None,
