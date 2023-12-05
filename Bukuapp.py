@@ -7,7 +7,7 @@ list_genre = ['', 'Romantis', 'Anak-anak', 'Horor', 'Sci-Fi', 'Aksi', 'Misteri',
 conn = st.connection("postgresql", type="sql", 
                      url="postgresql://nadia.2043221105:P4YglWGXSp3e@ep-muddy-rice-61227326.us-east-2.aws.neon.tech/web")
 with conn.session as session:
-    query = text('CREATE TABLE IF NOT EXISTS buku (id serial, code VARCHAR, title VARCHAR(255), genre VARCHAR(255), year INTEGER, author VARCHAR(255), publisher VARCHAR(255), rack VARCHAR(5), status VARCHAR(255));')
+    query = text('CREATE TABLE IF NOT EXISTS buku (id serial, code VARCHAR, title VARCHAR(255), genre VARCHAR(255), year TEXT, author VARCHAR(255), publisher VARCHAR(255), rack VARCHAR(5), status VARCHAR(255));')
     session.execute(query)
 
 st.header('DATABASE BUKU PERPUSTAKAAN')
@@ -22,7 +22,7 @@ if page == "Edit Data":
         with conn.session as session:
             query = text('INSERT INTO buku ("Kode Buku", "Judul Buku", "Genre", "Tahun Terbit", "Pengarang", "Penerbit", "Kode Rak", "Status") \
                           VALUES (:1, :2, :3, :4, :5, :6, :7, :8);')
-            session.execute(query, {'1':'', '2':'', '3':'', '4':None, '5':'', '6':'', '7':'', '8':''})
+            session.execute(query, {'1':'', '2':'', '3':'', '4':'', '5':'', '6':'', '7':'', '8':''})
             session.commit()
 
     data = conn.query('SELECT * FROM buku ORDER BY id;')
