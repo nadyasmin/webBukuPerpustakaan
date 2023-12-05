@@ -22,7 +22,7 @@ if page == "Edit Data":
         with conn.session as session:
             query = text('INSERT INTO buku ("Kode Buku", "Judul Buku", "Genre", "Tahun Terbit", "Pengarang", "Penerbit", "Kode Rak", "Status") \
                           VALUES (:1, :2, :3, :4, :5, :6, :7, :8);')
-            session.execute(query, {'1':'', '2':'', '3':'', '4':'', '5':'', '6':'', '7':'', '8':''})
+            session.execute(query, {'1':'', '2':'', '3':'', '4':None, '5':'', '6':'', '7':'', '8':''})
             session.commit()
 
     data = conn.query('SELECT * FROM buku ORDER BY id;')
