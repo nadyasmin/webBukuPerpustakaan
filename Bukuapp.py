@@ -37,7 +37,7 @@ if page == "Edit Data":
         rack_lama = result["Kode Rak"]
         status_lama = result["Status"]
 
-        with st.expander(f'Judul Buku {judul_lama}'):
+        with st.expander(f'Judul Buku {title_lama}'):
             with st.form(f'data-{id}'):
                 code_baru = st.text_input("Kode Buku", code_lama)
                 title_baru = st.text_input("Judul Buku", title_lama)
