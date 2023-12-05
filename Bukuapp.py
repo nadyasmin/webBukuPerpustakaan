@@ -7,7 +7,7 @@ list_genre = ['', 'Romantis', 'Anak-anak', 'Horor', 'Sci-Fi', 'Aksi', 'Misteri',
 conn = st.connection("postgresql", type="sql", 
                      url="postgresql://nadia.2043221105:P4YglWGXSp3e@ep-muddy-rice-61227326.us-east-2.aws.neon.tech/web")
 with conn.session as session:
-    query = text('CREATE TABLE IF NOT EXISTS buku (id serial, code VARCHAR, title VARCHAR(255), genre VARCHAR(255), year TEXT, author VARCHAR(255), publisher VARCHAR(255), rack VARCHAR(5), status VARCHAR(255), pict OID);')
+    query = text('CREATE TABLE IF NOT EXISTS buku (id serial, code VARCHAR, title VARCHAR(255), genre VARCHAR(255), year TEXT, author VARCHAR(255), publisher VARCHAR(255), rack VARCHAR(5), status VARCHAR(255), pict BYTEA);')
     session.execute(query)
 
 st.header('DATABASE BUKU PERPUSTAKAAN')
