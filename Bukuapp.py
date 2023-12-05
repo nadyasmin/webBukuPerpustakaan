@@ -22,14 +22,14 @@ if page == "Edit Data":
         with conn.session as session:
             query = text('INSERT INTO buku ("Kode Buku", "Judul Buku", "Genre", "Tahun Terbit", "Pengarang", "Penerbit", "Kode Rak", "Status") \
                           VALUES (:1, :2, :3, :4, :5, :6, :7, :8);')
-            session.execute(query, {'1':None, '2':None, '3':None, '4':None, '5':None, '6':None, '7':None, '8':None})
+            session.execute(query, {'1':'', '2':'', '3':'', '4':'', '5':'', '6':'', '7':'', '8':''})
             session.commit()
 
     data = conn.query('SELECT * FROM buku ORDER BY id;')
     for _, result in data.iterrows():
         id = result['id']
-        code_lama = result['Kode Buku']
-        title_lama = result["Judul Buku"]
+        code_lama = result["Kode Buku"]
+        title_lama = result["Judul"]
         genre_lama = result["Genre"]
         year_lama = result["Tahun Terbit"]
         author_lama = result["Pengarang"]
