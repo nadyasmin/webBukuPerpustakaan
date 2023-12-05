@@ -11,7 +11,7 @@ with conn.session as session:
     session.execute(query)
 
 st.header('DATABASE BUKU PERPUSTAKAAN')
-page = st.sidebar.selectbox("Pilih Menu", ["View Data","Edit Data"])
+page = st.sidebar.selectbox("Pilih Menu", ["View Data","Edit Data","Visualisasi Data"])
 
 if page == "View Data":
   data = conn.query('SELECT * FROM buku ORDER BY id;', ttl="0").set_index('id')
@@ -22,7 +22,7 @@ if page == "Edit Data":
         with conn.session as session:
             query = text('INSERT INTO buku ("Kode Buku", "Judul Buku", "Genre", "Tahun Terbit", "Pengarang", "Penerbit", "Kode Rak", "Status") \
                           VALUES (:1, :2, :3, :4, :5, :6, :7, :8);')
-            session.execute(query, {'1':'', '2':'', '3':'', '4':'', '5':'', '6':'', '7':'', '8':''})
+            session.execute(query, {'1':'-', '2':'-', '3':'-', '4':'-', '5':'-', '6':'-', '7':'-', '8':'-'})
             session.commit()
 
     data = conn.query('SELECT * FROM buku ORDER BY id;')
@@ -37,7 +37,7 @@ if page == "Edit Data":
         rack_lama = result["Kode Rak"]
         status_lama = result["Status"]
 
-        with st.expander(f'Judul Buku {title_lama}'):
+        with st.expander(f'Judul Buku {title_baru}'):
             with st.form(f'data-{id}'):
                 code_baru = st.text_input("Kode Buku", code_lama)
                 title_baru = st.text_input("Judul Buku", title_lama)
@@ -68,3 +68,13 @@ if page == "Edit Data":
                         session.execute(query, {'1':id})
                         session.commit()
                         st.experimental_rerun()
+
+if page == "Visualisasi Data":
+   if st.button('Genre Buku'):
+    st.subheader("Visualisasi Frekuensi Buku Berdasarkan Genre")
+    data = conn.query('SELECT genre, COUNT(*) as count FROM buku GROUP BY genre;')
+    st.bar_chart(data.set_index('genre'))
+   if st.button('Status Buku'):
+    st.subheader("Visualisasi Frekuensi Buku Tersedia dan Dipinjam")
+    data = conn.query('SELECT status, COUNT(*) as count FROM buku GROUP BY status;')
+    st.bar_chart(data.set_index('status'))
