@@ -3,7 +3,7 @@ CREATE TABLE buku (
     "Kode Buku" VARCHAR PRIMARY KEY,
     "Judul Buku" VARCHAR(255),
     "Genre" VARCHAR(255),
-    "Tahun Terbit" INTEGER,
+    "Tahun Terbit" TEXT,
     "Pengarang" VARCHAR(255),
     "Penerbit" VARCHAR (255),
     "Kode Rak" VARCHAR(5),
