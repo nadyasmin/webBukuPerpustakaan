@@ -8,6 +8,7 @@ CREATE TABLE buku (
     "Penerbit" VARCHAR (255),
     "Kode Rak" VARCHAR(255),
     "Status" VARCHAR (255),
+    "Foto Buku" OID
 );
 
 --isi--
