@@ -25,7 +25,7 @@ if page == "Edit Data":
               session.execute(query, {'1':'', '2':'', '3':'', '4':'', '5':'', '6':'', '7':'', '8':''})
               session.commit()
 
-    data = conn.query('SELECT * FROM buku ORDER BY id;')
+    data = conn.query('SELECT * FROM buku ORDER BY id;', ttl="0")
     for _, result in data.iterrows():
         id = result['id']
         code_lama = result["Kode Buku"]
