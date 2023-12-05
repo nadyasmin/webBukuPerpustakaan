@@ -1,12 +1,12 @@
 CREATE TABLE buku (
     id serial,
-    "Kode Buku" VARCHAR UNIQUE,
+    "Kode Buku" VARCHAR(255),
     "Judul Buku" VARCHAR(255),
     "Genre" VARCHAR(255),
     "Tahun Terbit" TEXT,
     "Pengarang" VARCHAR(255),
     "Penerbit" VARCHAR (255),
-    "Kode Rak" VARCHAR(5),
+    "Kode Rak" VARCHAR(255),
     "Status" VARCHAR (255),
 );
 
