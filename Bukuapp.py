@@ -29,7 +29,7 @@ if page == "Edit Data":
     for _, result in data.iterrows():
         id = result['id']
         code_lama = result["Kode Buku"]
-        title_lama = result["Judul"]
+        title_lama = result["Judul Buku"]
         genre_lama = result["Genre"]
         year_lama = result["Tahun Terbit"]
         author_lama = result["Pengarang"]
