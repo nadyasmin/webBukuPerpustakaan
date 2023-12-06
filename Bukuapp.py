@@ -7,7 +7,7 @@ list_genre = ['', 'Romantis', 'Anak-anak', 'Horor', 'Sci-Fi', 'Aksi', 'Misteri',
 conn = st.connection("postgresql", type="sql", 
                      url="postgresql://nadia.2043221105:P4YglWGXSp3e@ep-muddy-rice-61227326.us-east-2.aws.neon.tech/web")
 with conn.session as session:
-    query = text('CREATE TABLE IF NOT EXISTS buku (id serial, code VARCHAR, title VARCHAR(255), genre VARCHAR(255), year TEXT, author VARCHAR(255), publisher VARCHAR(255), rack VARCHAR(5), status VARCHAR(255));')
+    query = text('CREATE TABLE IF NOT EXISTS buku (id serial, "Kode Buku" VARCHAR, "Judul Buku" VARCHAR(255), "Genre" VARCHAR(255), "Tahun Terbit" TEXT, "Pengarang" VARCHAR(255), "Penerbit" VARCHAR(255), "Kode Rak" VARCHAR(5), "Status" VARCHAR(255));')
     session.execute(query)
 
 st.header('DATABASE BUKU PERPUSTAKAAN')
@@ -20,10 +20,11 @@ if page == "View Data":
 if page == "Edit Data":
     if st.button('Tambah Data'):
         with conn.session as session:
-              query = text('insert into buku ("Kode Buku", "Judul Buku", "Genre", "Tahun Terbit", "Pengarang", "Penerbit", "Kode Rak", "Status")\
-                            values (:1, :2, :3, :4, :5, :6, :7, :8);')
-              session.execute(query, {'1':'', '2':'', '3':'', '4':'', '5':'', '6':'', '7':'', '8':''})
-              session.commit()
+            query = text('INSERT INTO buku ("Kode Buku", "Judul Buku", "Genre", "Tahun Terbit", "Pengarang", "Penerbit", "Kode Rak", "Status")\
+                          VALUES (:1, :2, :3, :4, :5, :6, :7, :8);')
+            session.execute(query, {'1':'', '2':'', '3':'', '4':'', '5':'', '6':'', '7':'', '8':''})
+            session.commit()
+        st.rerun()
 
     data = conn.query('SELECT * FROM buku ORDER BY id;', ttl="0")
     for _, result in data.iterrows():
@@ -60,20 +61,20 @@ if page == "Edit Data":
                             session.execute(query, {'1':code_baru, '2':title_baru, '3':genre_baru, '4':year_baru, '5':author_baru, 
                                                     '6':publisher_baru, '7':rack_baru, '8':status_baru, '9':id})
                             session.commit()
-                            st.experimental_rerun()
+                            st.rerun()
                 
                 with col2:
                     if st.form_submit_button('DELETE'):
                         query = text(f'DELETE FROM buku WHERE id=:1;')
                         session.execute(query, {'1':id})
                         session.commit()
-                        st.experimental_rerun()
+                        st.rerun()
 
 if page == "Visualisasi Data":
    if st.button('Genre Buku'):
     st.subheader("Visualisasi Frekuensi Buku Berdasarkan Genre")
-    data = conn.query('SELECT genre_baru, COUNT(*) as count FROM buku GROUP BY genre_baru;')
-    st.pie_chart(data.set_index('genre_baru'))
+    data = conn.query('SELECT "Genre", COUNT(*) as count FROM buku GROUP BY "Genre";')
+    st.pie_chart(data.set_index('Genre'))
    if st.button('Status Buku'):
     st.subheader("Visualisasi Frekuensi Buku Tersedia dan Dipinjam")
     data = conn.query('SELECT "Status", COUNT(*) as count FROM buku GROUP BY "Status";')
