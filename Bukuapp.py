@@ -37,7 +37,7 @@ if page == "Edit Data":
         publisher_lama = result["Penerbit"]
         rack_lama = result["Kode Rak"]
         status_lama = result["Status"]
-        pict_lama = result["Foto Buku]
+        pict_lama = result["Foto Buku"]
 
         with st.expander(f'judul buku {title_lama}'):
             with st.form(f'data-{id}'):
