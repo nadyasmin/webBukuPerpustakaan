@@ -81,10 +81,3 @@ if page == "Visualisasi Data":
     data = conn.query('SELECT "Status", COUNT(*) as count FROM buku GROUP BY "Status";', ttl="0")
     st.bar_chart(data.set_index('Status'))
 
-
-[theme]
-primaryColor="#71583A"
-backgroundColor="#FFEBD3"
-secondaryBackgroundColor="#71583A"
-textColor="#262730"
-font="sans serif"
