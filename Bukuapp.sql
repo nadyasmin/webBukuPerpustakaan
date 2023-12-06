@@ -7,13 +7,12 @@ CREATE TABLE buku (
     "Pengarang" VARCHAR(255),
     "Penerbit" VARCHAR (255),
     "Kode Rak" VARCHAR(255),
-    "Status" VARCHAR (255),
-    "Foto Buku" BYTEA
+    "Status" VARCHAR (255)
 );
 
 --isi--
-insert into buku ("Kode Buku", "Judul Buku", "Genre", "Tahun Terbit", "Pengarang", "Penerbit", "Kode Rak", "Status", "Foto Buku") 
+insert into buku ("Kode Buku", "Judul Buku", "Genre", "Tahun Terbit", "Pengarang", "Penerbit", "Kode Rak", "Status") 
 values
-	('ROM001', 'Matahari Terbenam di Pantai', 'Romantis', '2018', 'Aulia Nuryani', 'Cinta Sejati Publishing', 'N001', 'Tersedia', 'C:\\Users\\Nadia Salsabila\\Downloads\\Gambar untuk Kuliah\\line chart.png')
+	('ROM001', 'Matahari Terbenam di Pantai', 'Romantis', '2018', 'Aulia Nuryani', 'Cinta Sejati Publishing', 'N001', 'Tersedia')
 	;
 	
