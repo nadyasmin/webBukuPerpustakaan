@@ -1,6 +1,5 @@
 import streamlit as st
 from sqlalchemy import text
-import base64
 
 list_status = ['', 'Tersedia', 'Dipinjam']
 list_genre = ['', 'Romantis', 'Anak-anak', 'Horor', 'Sci-Fi', 'Aksi', 'Misteri', 'Pengembangan Diri']
