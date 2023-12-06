@@ -10,7 +10,7 @@ with conn.session as session:
     query = text('CREATE TABLE IF NOT EXISTS buku (id serial, "Kode Buku" VARCHAR, "Judul Buku" VARCHAR(255), "Genre" VARCHAR(255), "Tahun Terbit" TEXT, "Pengarang" VARCHAR(255), "Penerbit" VARCHAR(255), "Kode Rak" VARCHAR(5), "Status" VARCHAR(255));')
     session.execute(query)
 
-st.header('DATABASE BUKU PERPUSTAKAAN')
+st.header('DATABASE BUKU PERPUSTAKAAN📖')
 page = st.sidebar.selectbox("Pilih Menu", ["View Data","Edit Data","Visualisasi Data"])
 
 if page == "View Data":
