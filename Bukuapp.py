@@ -7,7 +7,7 @@ list_genre = ['', 'Romantis', 'Anak-anak', 'Horor', 'Sci-Fi', 'Aksi', 'Misteri',
 conn = st.connection("postgresql", type="sql", 
                      url="postgresql://nadia.2043221105:P4YglWGXSp3e@ep-muddy-rice-61227326.us-east-2.aws.neon.tech/web")
 with conn.session as session:
-    query = text('CREATE TABLE IF NOT EXISTS buku (id serial, "Kode Buku" VARCHAR, "Judul Buku" VARCHAR(255), "Genre" VARCHAR(255), "Tahun Terbit" TEXT, "Pengarang" VARCHAR(255), "Penerbit" VARCHAR(255), "Kode Rak" VARCHAR(5), "Status" VARCHAR(255));')
+    query = text('CREATE TABLE IF NOT EXISTS buku (id serial, "Kode Buku" VARCHAR, "Judul Buku" VARCHAR(255), "Genre" VARCHAR(255), "Tahun Terbit" TEXT, "Pengarang" VARCHAR(255), "Penerbit" VARCHAR(255), "Kode Rak" VARCHAR(5), "Status" VARCHAR(255), "Foto Buku" BYTEA);')
     session.execute(query)
 
 st.header('DATABASE BUKU PERPUSTAKAAN')
@@ -20,9 +20,9 @@ if page == "View Data":
 if page == "Edit Data":
     if st.button('Tambah Data'):
         with conn.session as session:
-            query = text('INSERT INTO buku ("Kode Buku", "Judul Buku", "Genre", "Tahun Terbit", "Pengarang", "Penerbit", "Kode Rak", "Status")\
-                          VALUES (:1, :2, :3, :4, :5, :6, :7, :8);')
-            session.execute(query, {'1':'', '2':'', '3':'', '4':'', '5':'', '6':'', '7':'', '8':''})
+            query = text('INSERT INTO buku ("Kode Buku", "Judul Buku", "Genre", "Tahun Terbit", "Pengarang", "Penerbit", "Kode Rak", "Status", "Foto Buku")\
+                          VALUES (:1, :2, :3, :4, :5, :6, :7, :8, :9);')
+            session.execute(query, {'1':'', '2':'', '3':'', '4':'', '5':'', '6':'', '7':'', '8':'', '9':''})
             session.commit()
         st.rerun()
 
@@ -37,6 +37,7 @@ if page == "Edit Data":
         publisher_lama = result["Penerbit"]
         rack_lama = result["Kode Rak"]
         status_lama = result["Status"]
+        pict_lama = result["Foto Buku]
 
         with st.expander(f'judul buku {title_lama}'):
             with st.form(f'data-{id}'):
@@ -48,6 +49,7 @@ if page == "Edit Data":
                 publisher_baru = st.text_input("Penerbit", publisher_lama)
                 rack_baru = st.text_input("Kode Rak", rack_lama)
                 status_baru = st.selectbox("Status", list_status, list_status.index(status_lama))
+                pict_baru = st.file_uploader("Foto Buku", type=["jpg", "jpeg", "png"])
 
                 col1, col2 = st.columns([1, 6])
 
@@ -56,10 +58,10 @@ if page == "Edit Data":
                         with conn.session as session:
                             query = text('UPDATE buku \
                                           SET "Kode Buku"=:1, "Judul Buku"=:2, "Genre"=:3, "Tahun Terbit"=:4, \
-                                          "Pengarang"=:5, "Penerbit"=:6, "Kode Rak"=:7, "Status"=:8 \
-                                          WHERE id=:9;')
+                                          "Pengarang"=:5, "Penerbit"=:6, "Kode Rak"=:7, "Status"=:8, "Foto Buku"=:9\
+                                          WHERE id=:10;')
                             session.execute(query, {'1':code_baru, '2':title_baru, '3':genre_baru, '4':year_baru, '5':author_baru, 
-                                                    '6':publisher_baru, '7':rack_baru, '8':status_baru, '9':id})
+                                                    '6':publisher_baru, '7':rack_baru, '8':status_baru, '9':pict_baru, '10':id})
                             session.commit()
                             st.rerun()
                 
