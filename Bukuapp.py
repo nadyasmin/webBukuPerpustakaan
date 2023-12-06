@@ -72,8 +72,8 @@ if page == "Edit Data":
 if page == "Visualisasi Data":
    if st.button('Genre Buku'):
     st.subheader("Visualisasi Frekuensi Buku Berdasarkan Genre")
-    data = conn.query('SELECT "Genre", COUNT(*) as count FROM buku GROUP BY "Genre";')
-    st.bar_chart(data.set_index('Genre'))
+    data = conn.query('SELECT genre_baru, COUNT(*) as count FROM buku GROUP BY "Genre";')
+    st.bar_chart(data.set_index('genre_baru'))
    if st.button('Status Buku'):
     st.subheader("Visualisasi Frekuensi Buku Tersedia dan Dipinjam")
     data = conn.query('SELECT "Status", COUNT(*) as count FROM buku GROUP BY "Status";')
