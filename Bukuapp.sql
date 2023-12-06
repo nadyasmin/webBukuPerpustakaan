@@ -7,8 +7,7 @@ CREATE TABLE buku (
     "Pengarang" VARCHAR(255),
     "Penerbit" VARCHAR (255),
     "Kode Rak" VARCHAR(255),
-    "Status" VARCHAR (255),
-    "Foto Buku" BYTEA
+    "Status" VARCHAR (255)
 );
 
 --isi--
